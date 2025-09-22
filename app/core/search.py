@@ -2,7 +2,7 @@ import json
 import numpy as np
 
 from sentence_transformers import SentenceTransformer
-from app.config import SEED_JSON, TOP_K, EMBEDDING_MODEL_NAME
+from app.config import TOP_K, EMBEDDING_MODEL_NAME
 from app.models.db_models import KBDocument
 
 
@@ -29,7 +29,7 @@ class GrantContextRetriever:
             raise ValueError("No embedding model specified.")
         self.model = SentenceTransformer(model_name)
 
-    def build_index(self, seed_path=SEED_JSON):
+    def build_index(self, seed_path):
         """
         Load documents from a JSON seed file and build embeddings.
         """
@@ -69,6 +69,9 @@ class GrantContextRetriever:
             print(f"No documents in index. Returning empty results.")
             return []
 
+        results = []
+        threshold = 0.1
+
         if company_id:
             candidate_docs = []
             for doc in self.docs:
@@ -96,6 +99,10 @@ class GrantContextRetriever:
 
         similarity = embeddings_normalization.dot(query_normalization)
         idx = np.argsort(-similarity)[:top_k]
-        results = [(candidate_docs[i], float(similarity[i])) for i in idx]
+        for i in idx:
+            if similarity[i] >= threshold:
+                doc = candidate_docs[i]
+                sim_score = float(similarity[i])
+                results.append((doc, sim_score))
 
         return results

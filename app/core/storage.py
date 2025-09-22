@@ -3,7 +3,7 @@ from app.config import HISTORY_FILE
 from app.utils.helpers import current_utc_time, new_uuid
 
 
-class HistoryStore:
+class HistoryStorage:
     """Store and manage history of generated sections in a JSON file."""
 
     def __init__(self, path=HISTORY_FILE):

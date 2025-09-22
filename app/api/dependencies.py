@@ -1,11 +1,13 @@
 from app.core.search import GrantContextRetriever
-from app.core.storage import HistoryStore
+from app.core.storage import HistoryStorage
+from app.config import SEED_JSON
 
 
 class AppDepends:
-    def __init__(self):
+    def __init__(self, seed_path=SEED_JSON):
         self.retriever = None
         self.history_store = None
+        self.seed_path = seed_path
 
     def get_retriever(self):
         """
@@ -21,13 +23,13 @@ class AppDepends:
         """
         Build index for returned a singleton GrantContextRetriever.
         """
-        self.retriever.build_index()
+        self.retriever.build_index(self.seed_path)
 
     def get_history_store(self):
         """
         Return a singleton HistoryStore.
         """
         if self.history_store is None:
-            self.history_store = HistoryStore()
+            self.history_store = HistoryStorage()
 
         return self.history_store
