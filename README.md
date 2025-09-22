@@ -96,6 +96,8 @@ docker run -p 8000:8000 grantbot-ai
 ```
 
 ### Application support
-Once the server is running, the backend API is available at: http://127.0.0.1:8000 .
-You can interact with the API directly through HTTP requests, or explore the 
-automatically generated interactive documentation provided by FastAPI at: http://127.0.0.1:8000/docs .
+Once the server is running, the backend API is available at: http://127.0.0.1:8000 (for 
+setup by terminal) or http://localhost:8000/ (for setup by docker). You can interact 
+with the API directly through HTTP requests, or explore the  automatically generated 
+interactive documentation provided by FastAPI at: http://127.0.0.1:8000/docs (for setup 
+by terminal) or http://localhost:8000/docs (for setup by docker).
