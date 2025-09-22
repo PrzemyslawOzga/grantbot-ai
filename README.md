@@ -55,6 +55,8 @@ context from a knowledge base while still being lightweight enough to run locall
 ---
 
 ## Local setup, run steps & application support
+
+### Setup by terminal
 ```
 # Preferred python version is Python 3.10.x
 python --version
@@ -74,10 +76,26 @@ pip install -r requirements-test.txt  # if you would like to run tests
 
 # Ensure data/grantbot_vector_seed.json is available, then please run in terminal:
 uvicorn app.main:app --reload
-
-# Once the server is running, the backend API is available at:
-# http://127.0.0.1:8000
-# You can interact with the API directly through HTTP requests, or explore the 
-# automatically generated interactive documentation provided by FastAPI at:
-# http://127.0.0.1:8000/docs
 ```
+
+### Setup by dockerfile
+```
+# Flag -t grantbot-ai - add name for docker image
+docker build -t grantbot-ai .
+
+# When container build successful, run container
+docker run -p 8000:8000 grantbot-ai
+
+# If you run containter in Docker Desktop App please configure port = 8000
+# In console you should see below log:
+# Uvicorn running on http://0.0.0.0:8000
+# But please use url - http://localhost:8000/
+# In powershell you can read dockerfile logs by:
+# docker ps
+# docker logs <container_id>
+```
+
+### Application support
+Once the server is running, the backend API is available at: http://127.0.0.1:8000 .
+You can interact with the API directly through HTTP requests, or explore the 
+automatically generated interactive documentation provided by FastAPI at: http://127.0.0.1:8000/docs .
