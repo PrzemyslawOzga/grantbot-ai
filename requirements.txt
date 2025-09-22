@@ -2,9 +2,8 @@ fastapi==0.117.1
 uvicorn[standard]==0.36.0
 pydantic==2.11.9
 numpy==1.25.2
-pandas==2.3.2
 sentence-transformers==2.2.2
 transformers==4.33.2
-torch==2.2.0
+torch==2.2.0  # sentence-transformer needs torch
 huggingface-hub==0.16.4
-python-multipart==0.0.20
+python-multipart==0.0.20  # fastapi needs python-multipart for run project

@@ -58,3 +58,6 @@ instance/
 __pypackages__/
 cython_debug/
 .ruff_cache/
+
+# Project data
+data/history.json
