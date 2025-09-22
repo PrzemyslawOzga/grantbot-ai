@@ -25,7 +25,7 @@ class AppDepends:
         """
         self.retriever.build_index(self.seed_path)
 
-    def get_history_store(self):
+    def get_history_storage(self):
         """
         Return a singleton HistoryStore.
         """

@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException
-
 from app.api.dependencies import AppDepends
 from app.utils.helpers import current_utc_time, new_uuid
 from app.core.generator import generator
@@ -22,7 +21,7 @@ def generate_section(
         retriever = app_depends.get_retriever()
 
     if history_store is None:
-        history_store = app_depends.get_history_store()
+        history_store = app_depends.get_history_storage()
 
     results = retriever.search(request.text, company_id=request.company_id)
     if not results:
@@ -63,7 +62,7 @@ def get_history(company_id, history_store=None):
     app_depends = AppDepends()
 
     if history_store is None:
-        history_store = app_depends.get_history_store()
+        history_store = app_depends.get_history_storage()
 
     entries = history_store.list_for_company(company_id)
     if not entries:

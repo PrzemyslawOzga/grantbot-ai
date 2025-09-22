@@ -1,16 +1,5 @@
-import pytest
 from app.core.storage import HistoryStorage
 from app.core.generator import generator
-from app.api.dependencies import AppDepends
-
-TEST_JSON_PATH = "./tests/test_data/test_data.json"
-
-@pytest.fixture
-def retriever():
-    """Create a GrantContextRetriever and build index from test JSON."""
-    app_depends = AppDepends(seed_path=TEST_JSON_PATH)
-    retriever = app_depends.get_retriever()
-    return retriever
 
 def test_core_generator(retriever):
     """Test generator output contains input text and document references."""
